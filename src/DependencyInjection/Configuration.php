@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Setono\EconomicBundle\DependencyInjection;
 
+use Setono\EconomicBundle\Entity\EconomicAwareInterface;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 
@@ -37,8 +38,8 @@ final class Configuration implements ConfigurationInterface
                         ->end()
                     ->end()
                 ->end()
-                ->arrayNode('entity_mapping')
-                    ->info('This is where you map your entities to e-conomic endpoints')
+                ->arrayNode('resources')
+                    ->info('Configure the pushing and pulling of resources to e-conomic')
                     ->useAttributeAsKey('resource')
                     ->arrayPrototype()
                         ->children()
@@ -47,6 +48,16 @@ final class Configuration implements ConfigurationInterface
                             ->end()
                             ->scalarNode('entity')
                                 ->isRequired()
+                                ->validate()
+                                    ->ifTrue(fn (string $class) => !is_a($class, EconomicAwareInterface::class, true))
+                                    ->thenInvalid(sprintf('The entity must implement the %s', EconomicAwareInterface::class))
+                                ->end()
+                            ->end()
+                            ->booleanNode('push')
+                                ->defaultFalse()
+                            ->end()
+                            ->booleanNode('pull')
+                                ->defaultFalse()
                             ->end()
                         ->end()
                     ->end()
