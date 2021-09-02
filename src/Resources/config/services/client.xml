@@ -7,8 +7,8 @@
             <argument type="service" id="http_client"/>
             <argument type="service">
                 <service class="Setono\EconomicBundle\DTO\Credentials">
-                    <argument>demo</argument>
-                    <argument>demo</argument>
+                    <argument>%setono_economic.credentials.app_secret_token%</argument>
+                    <argument>%setono_economic.credentials.agreement_grant_token%</argument>
                 </service>
             </argument>
             <argument>https://restapi.e-conomic.com</argument>
