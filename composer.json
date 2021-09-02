@@ -1,0 +1,64 @@
+{
+    "name": "setono/economic-bundle",
+    "type": "symfony-bundle",
+    "description": "This bundle makes it easy to work with the e-conomic API",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Joachim Løvgaard",
+            "email": "joachim@loevgaard.dk"
+        }
+    ],
+    "require": {
+        "php": ">=7.4",
+        "doctrine/doctrine-bundle": "^2.4",
+        "doctrine/orm": "^2.9",
+        "doctrine/persistence": "^2.2",
+        "setono/doctrine-object-manager-trait": "^1.0",
+        "symfony/config": "^4.4 || ^5.0",
+        "symfony/dependency-injection": "^4.4 || ^5.0",
+        "symfony/http-client": "^5.3",
+        "symfony/http-foundation": "^4.4 || ^5.0.7",
+        "symfony/http-kernel": "^4.4 || ^5.1.5",
+        "symfony/messenger": "^5.3",
+        "symfony/property-access": "^5.3",
+        "symfony/serializer": "^5.3",
+        "symfony/uid": "^5.3",
+        "webmozart/assert": "^1.10"
+    },
+    "require-dev": {
+        "infection/infection": "^0.24.0",
+        "matthiasnoback/symfony-dependency-injection-test": "^4.2",
+        "phpspec/prophecy-phpunit": "^2.0",
+        "phpunit/phpunit": "^9.5",
+        "psalm/plugin-phpunit": "^0.16.1",
+        "psalm/plugin-symfony": "^2.3",
+        "roave/security-advisories": "dev-latest",
+        "setono/code-quality-pack": "^2.1"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Setono\\EconomicBundle\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Setono\\EconomicBundle\\Tests\\": "tests/"
+        }
+    },
+    "prefer-stable": true,
+    "scripts": {
+        "analyse": "psalm",
+        "check-style": "ecs check",
+        "fix-style": "ecs check --fix",
+        "phpunit": "phpunit"
+    }
+}
