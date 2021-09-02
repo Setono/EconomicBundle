@@ -10,13 +10,10 @@ final class Credentials
 
     private string $agreementGrantToken;
 
-    private ?string $agreementNumber;
-
-    public function __construct(string $appSecretToken, string $agreementGrantToken, string $agreementNumber = null)
+    public function __construct(string $appSecretToken, string $agreementGrantToken)
     {
         $this->appSecretToken = $appSecretToken;
         $this->agreementGrantToken = $agreementGrantToken;
-        $this->agreementNumber = $agreementNumber;
     }
 
     public function getAppSecretToken(): string
@@ -27,10 +24,5 @@ final class Credentials
     public function getAgreementGrantToken(): string
     {
         return $this->agreementGrantToken;
-    }
-
-    public function getAgreementNumber(): ?string
-    {
-        return $this->agreementNumber;
     }
 }
