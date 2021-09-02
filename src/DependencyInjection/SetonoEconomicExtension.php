@@ -14,13 +14,14 @@ final class SetonoEconomicExtension extends Extension
     public function load(array $configs, ContainerBuilder $container): void
     {
         /**
-         * @var array{credentials: array{app_secret_token: string, agreement_grant_token: string} $config
+         * @var array{credentials: array{app_secret_token: string, agreement_grant_token: string}, entity_mapping: array<string, string>} $config
          * @psalm-suppress PossiblyNullArgument
          */
         $config = $this->processConfiguration($this->getConfiguration([], $container), $configs);
 
         $container->setParameter('setono_economic.credentials.app_secret_token', $config['credentials']['app_secret_token']);
         $container->setParameter('setono_economic.credentials.agreement_grant_token', $config['credentials']['agreement_grant_token']);
+        $container->setParameter('setono_economic.entity_mapping', $config['entity_mapping']);
 
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
         $loader->load('services.xml');

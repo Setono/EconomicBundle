@@ -5,22 +5,22 @@ declare(strict_types=1);
 namespace Setono\EconomicBundle\Pusher;
 
 use Setono\EconomicBundle\Client\ClientInterface;
+use Setono\EconomicBundle\Endpoint\Resolver\ResolverInterface;
 use Setono\EconomicBundle\Entity\EconomicAwareInterface;
-use Setono\EconomicBundle\Resolver\EndpointResolverInterface;
 use Symfony\Component\Serializer\SerializerInterface;
-use Symfony\Contracts\HttpClient\ResponseInterface;
+use Webmozart\Assert\Assert;
 
 final class EntityPusher implements EntityPusherInterface
 {
     private SerializerInterface $serializer;
 
-    private EndpointResolverInterface $endpointResolver;
+    private ResolverInterface $endpointResolver;
 
     private ClientInterface $client;
 
     public function __construct(
         SerializerInterface $serializer,
-        EndpointResolverInterface $endpointResolver,
+        ResolverInterface $endpointResolver,
         ClientInterface $client
     ) {
         $this->serializer = $serializer;
@@ -30,26 +30,17 @@ final class EntityPusher implements EntityPusherInterface
 
     public function pushEntity(EconomicAwareInterface $entity): void
     {
+        $endpoint = $this->endpointResolver->resolveEndpoint($entity);
         $economicIdentifier = $entity->getEconomicIdentifier();
-
-        if (null === $economicIdentifier) {
-            $method = 'post';
-            $endpoint = $this->endpointResolver->postSingle($entity);
-        } else {
-            $method = 'put';
-            $endpoint = $this->endpointResolver->putSingle($entity, $economicIdentifier);
-        }
 
         $data = $this->serializer->serialize($entity, 'json', ['groups' => 'setono:economic:push']);
 
-        $this->request($method, $endpoint, $data)->getStatusCode();
-    }
+        if (null === $economicIdentifier) {
+            $response = $this->client->post($endpoint->getBaseUri(), $data);
+        } else {
+            $response = $this->client->put(sprintf('%s/%s', $endpoint->getBaseUri(), $economicIdentifier), $data);
+        }
 
-    private function request(string $method, string $endpoint, string $data): ResponseInterface
-    {
-        /** @var ResponseInterface $response */
-        $response = $this->client->{$method}($endpoint, $data);
-
-        return $response;
+        Assert::same($response->getStatusCode(), 201);
     }
 }

@@ -4,6 +4,7 @@
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
     <imports>
         <import resource="services/client.xml"/>
+        <import resource="services/endpoint.xml"/>
         <import resource="services/event_listener.xml"/>
         <import resource="services/message.xml"/>
         <import resource="services/pusher.xml"/>
