@@ -6,8 +6,7 @@
         <service id="setono_economic.client" class="Setono\EconomicBundle\Client\Client">
             <argument type="service" id="http_client"/>
             <argument type="service">
-                <service>
-                    <factory class="Setono\EconomicBundle\DTO\Credentials"/>
+                <service class="Setono\EconomicBundle\DTO\Credentials">
                     <argument>demo</argument>
                     <argument>demo</argument>
                 </service>
