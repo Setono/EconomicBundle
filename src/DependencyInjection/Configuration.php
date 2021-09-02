@@ -26,6 +26,7 @@ final class Configuration implements ConfigurationInterface
             ->addDefaultsIfNotSet()
             ->children()
                 ->arrayNode('credentials')
+                    ->isRequired()
                     ->children()
                         ->scalarNode('app_secret_token')
                             ->isRequired()
@@ -39,6 +40,7 @@ final class Configuration implements ConfigurationInterface
                         ->end()
                     ->end()
                 ->end()
+            ->end()
         ;
 
         return $treeBuilder;
