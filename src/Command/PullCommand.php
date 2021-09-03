@@ -15,6 +15,10 @@ use Symfony\Component\Messenger\MessageBusInterface;
 
 final class PullCommand extends Command
 {
+    protected static $defaultName = 'setono:economic:pull';
+
+    protected static $defaultDescription = 'Pull configured resources from e-conomic to your local database';
+
     private RegistryInterface $resourceRegistry;
 
     private MessageBusInterface $commandBus;
