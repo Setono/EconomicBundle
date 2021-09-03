@@ -23,10 +23,5 @@ final class RegisterDataMappersPass implements CompilerPassInterface
         foreach (array_keys($container->findTaggedServiceIds('setono_economic.data_mapper')) as $id) {
             $mapper->addMethodCall('add', [new Reference($id)]);
         }
-
-        $container
-            ->registerForAutoconfiguration(DataMapperInterface::class)
-            ->addTag('setono_economic.data_mapper')
-        ;
     }
 }
