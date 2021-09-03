@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Setono\EconomicBundle\DependencyInjection\Compiler;
 
+use Setono\EconomicBundle\DataMapper\DataMapperInterface;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Reference;
@@ -22,5 +23,10 @@ final class RegisterDataMappersPass implements CompilerPassInterface
         foreach (array_keys($container->findTaggedServiceIds('setono_economic.data_mapper')) as $id) {
             $mapper->addMethodCall('add', [new Reference($id)]);
         }
+
+        $container
+            ->registerForAutoconfiguration(DataMapperInterface::class)
+            ->addTag('setono_economic.data_mapper')
+        ;
     }
 }
