@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Setono\EconomicBundle\Resource;
 
 use Spatie\DataTransferObject\DataTransferObject;
+use Webmozart\Assert\Assert;
 
 final class Resource implements ResourceInterface
 {
@@ -24,6 +25,8 @@ final class Resource implements ResourceInterface
      */
     public function __construct(string $name, string $baseUri, string $identifier, string $dto)
     {
+        Assert::regex($name, '/[a-z_]+/');
+
         $this->name = $name;
         $this->baseUri = rtrim($baseUri, '/');
         $this->identifier = $identifier;
