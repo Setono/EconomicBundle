@@ -11,11 +11,15 @@ interface EconomicAwareInterface
 {
     /**
      * Gets the value of the e-conomic identifier
+     *
+     * @return int|string|null
      */
-    public function getEconomicIdentifier(): ?string;
+    public function getEconomicIdentifier();
 
     /**
      * Sets the value of the e-conomic identifier
+     *
+     * @param int|string|null $identifier
      */
-    public function setEconomicIdentifier(?string $identifier): void;
+    public function setEconomicIdentifier($identifier): void;
 }

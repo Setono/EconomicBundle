@@ -44,12 +44,12 @@ final class PushEntityToEconomicHandlerTest extends TestCase
 
 class EconomicAware implements EconomicAwareInterface
 {
-    public function getEconomicIdentifier(): ?string
+    public function getEconomicIdentifier()
     {
         return 'identifier';
     }
 
-    public function setEconomicIdentifier(?string $identifier): void
+    public function setEconomicIdentifier($identifier): void
     {
         // TODO: Implement setEconomicIdentifier() method.
     }
