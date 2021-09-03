@@ -19,9 +19,9 @@ final class CustomerDTOTest extends TestCase
     public function it_instantiates(): void
     {
         $data = self::getData();
-        new CustomerDTO($data);
+        $dto = new CustomerDTO($data);
 
-        self::assertTrue(true);
+        self::assertSame('DK', $dto->country);
     }
 
     private static function getData(): array
