@@ -7,7 +7,6 @@
         <import resource="services/event_listener.xml"/>
         <import resource="services/message.xml"/>
         <import resource="services/pusher.xml"/>
-        <import resource="services/resolver.xml"/>
         <import resource="services/resource.xml"/>
     </imports>
 </container>

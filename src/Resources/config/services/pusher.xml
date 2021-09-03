@@ -6,7 +6,7 @@
         <service id="setono_economic.pusher.entity"
                  class="Setono\EconomicBundle\Pusher\EntityPusher">
             <argument type="service" id="serializer"/>
-            <argument type="service" id="setono_economic.resolver.endpoint"/>
+            <argument type="service" id="setono_economic.resource.resolver"/>
             <argument type="service" id="setono_economic.client"/>
         </service>
     </services>

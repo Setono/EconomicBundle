@@ -6,6 +6,7 @@
         <service id="setono_economic.event_listener.doctrine.entity_updated"
                  class="Setono\EconomicBundle\EventListener\Doctrine\EntityUpdatedListener">
             <argument type="service" id="messenger.default_bus"/>
+            <argument type="service" id="setono_economic.resource.resolver"/>
 
             <tag name="doctrine.event_listener" event="postPersist"/>
             <tag name="doctrine.event_listener" event="postUpdate"/>
