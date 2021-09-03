@@ -47,7 +47,7 @@ final class Puller implements PullerInterface
         $job = $this->jobFactory->createNew();
         $job->setName(sprintf('E-conomic: Pull %s collection', $resource->getName()));
         $job->setExclusive(true);
-        $job->setType('pull_collection');
+        $job->setType(sprintf('pull_%s_collection', $resource->getName()));
         $job->setSteps($pageCount);
 
         $this->jobManager->start($job);
