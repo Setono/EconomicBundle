@@ -28,7 +28,7 @@ final class PullCollectionPageFromEconomic
         Assert::string($resource);
 
         if ($job instanceof JobInterface) {
-            $job->getId();
+            $job = $job->getId();
         }
         Assert::integer($job);
 
