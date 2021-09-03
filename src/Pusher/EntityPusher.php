@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Setono\EconomicBundle\Pusher;
 
 use Setono\EconomicBundle\Client\ClientInterface;
-use Setono\EconomicBundle\Endpoint\Resolver\ResolverInterface;
 use Setono\EconomicBundle\Entity\EconomicAwareInterface;
+use Setono\EconomicBundle\Resource\Resolver\ResolverInterface;
 use Symfony\Component\Serializer\SerializerInterface;
 use Webmozart\Assert\Assert;
 

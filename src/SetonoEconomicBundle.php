@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Setono\EconomicBundle;
 
-use Setono\EconomicBundle\DependencyInjection\Compiler\RegisterEndpointsPass;
+use Setono\EconomicBundle\DependencyInjection\Compiler\RegisterResourcesPass;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
@@ -14,6 +14,6 @@ final class SetonoEconomicBundle extends Bundle
     {
         parent::build($container);
 
-        $container->addCompilerPass(new RegisterEndpointsPass());
+        $container->addCompilerPass(new RegisterResourcesPass());
     }
 }

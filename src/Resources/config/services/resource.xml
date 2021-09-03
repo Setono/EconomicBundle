@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<container xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://symfony.com/schema/dic/services"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <services>
+        <service id="setono_economic.resource.customer" class="Setono\EconomicBundle\Resource\Resource">
+            <factory service="setono_economic.resource.factory" method="create"/>
+            <argument>customer</argument>
+            <argument>/customers</argument>
+            <argument>customerNumber</argument>
+
+            <tag name="setono_economic.resource"/>
+        </service>
+
+        <service id="setono_economic.resource.registry" class="Setono\EconomicBundle\Resource\Registry\Registry"/>
+
+        <service id="setono_economic.resource.factory" class="Setono\EconomicBundle\Resource\ResourceFactory">
+            <argument>%setono_economic.resources%</argument>
+        </service>
+    </services>
+</container>

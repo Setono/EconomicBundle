@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Setono\EconomicBundle\Endpoint;
+namespace Setono\EconomicBundle\Resource;
 
-interface EndpointInterface
+interface ResourceInterface
 {
     /**
      * Returns a unique (within endpoints) string that identifies the endpoint.
@@ -12,7 +12,7 @@ interface EndpointInterface
      *
      * This is used to map between entities and endpoints
      */
-    public function getResource(): string;
+    public function getName(): string;
 
     /**
      * The base uri that all urls on this endpoint are built from.
@@ -25,4 +25,12 @@ interface EndpointInterface
      * An example could be 'customerNumber' which identifies customers
      */
     public function getIdentifier(): string;
+
+    /**
+     * If the user has defined a mapping between a resource and an entity this Config object will hold that information
+     * else it will return null
+     */
+    public function getConfig(): ?Config;
+
+    public function setConfig(?Config $config): void;
 }
