@@ -51,8 +51,8 @@ final class PullCommand extends Command
                 continue;
             }
 
-            $this->commandBus->dispatch(new PullCollectionFromEconomic($resource));
             $io->success(sprintf('Triggered pull of collection for resource %s', $resource->getName()));
+            $this->commandBus->dispatch(new PullCollectionFromEconomic($resource));
         }
 
         return Command::SUCCESS;
