@@ -65,6 +65,7 @@ final class PullCollectionPageFromEconomicHandler implements MessageHandlerInter
             $dto = new $dtoClass($item);
 
             $entity = $this->dataMapper->map($resource, $dto);
+            $entity->skipPushListener();
 
             $manager = $this->getManager($entity);
             $manager->persist($entity);

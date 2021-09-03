@@ -10,6 +10,13 @@ namespace Setono\EconomicBundle\Entity;
 interface EconomicAwareInterface
 {
     /**
+     * If this is true the push listener will not try to push this entity to economic
+     */
+    public function isPushListenerSkipped(): bool;
+
+    public function skipPushListener(bool $skipPushListener = true): void;
+
+    /**
      * Gets the value of the e-conomic identifier
      *
      * @return int|string|null

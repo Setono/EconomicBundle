@@ -9,6 +9,7 @@ use Doctrine\Persistence\ManagerRegistry;
 use PHPUnit\Framework\TestCase;
 use Prophecy\PhpUnit\ProphecyTrait;
 use Setono\EconomicBundle\Entity\EconomicAwareInterface;
+use Setono\EconomicBundle\Entity\EconomicAwareTrait;
 use Setono\EconomicBundle\Message\Command\PushEntityToEconomic;
 use Setono\EconomicBundle\Message\Handler\PushEntityToEconomicHandler;
 use Setono\EconomicBundle\Pusher\EntityPusherInterface;
@@ -44,6 +45,8 @@ final class PushEntityToEconomicHandlerTest extends TestCase
 
 class EconomicAware implements EconomicAwareInterface
 {
+    use EconomicAwareTrait;
+
     public function getEconomicIdentifier()
     {
         return 'identifier';

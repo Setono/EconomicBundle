@@ -42,6 +42,10 @@ final class EntityUpdatedListener
             return;
         }
 
+        if ($entity->isPushListenerSkipped()) {
+            return;
+        }
+
         try {
             $resource = $this->resourceResolver->resolveEndpoint($entity);
         } catch (\Throwable $e) {
