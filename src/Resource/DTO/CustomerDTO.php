@@ -13,9 +13,9 @@ final class CustomerDTO extends FlexibleDataTransferObject
 {
     use DataTransferObjectTrait;
 
-    public ?int $customerNumber = null;
+    public int $customerNumber;
 
-    public ?string $name = null;
+    public string $name;
 
     public ?string $address = null;
 
