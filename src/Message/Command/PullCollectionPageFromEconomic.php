@@ -23,7 +23,7 @@ final class PullCollectionPageFromEconomic
     public function __construct($resource, $job, string $url)
     {
         if ($resource instanceof ResourceInterface) {
-            $resource->getName();
+            $resource = $resource->getName();
         }
         Assert::string($resource);
 
