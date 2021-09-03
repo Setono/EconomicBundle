@@ -31,7 +31,7 @@ final class Client implements ClientInterface
 
     public function get(string $url): ResponseInterface
     {
-        return $this->httpClient->request('GET', $url);
+        return $this->httpClient->request('GET', $url, $this->resolveOptions());
     }
 
     public function post(string $url, $data): ResponseInterface
