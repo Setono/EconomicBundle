@@ -8,7 +8,7 @@ use Setono\EconomicBundle\Resource\ResourceInterface;
 
 final class Registry implements RegistryInterface, \IteratorAggregate
 {
-    /** @var array<array-key, ResourceInterface> */
+    /** @var array<string, ResourceInterface> */
     private array $resources = [];
 
     public function add(ResourceInterface $resource): void
@@ -17,7 +17,7 @@ final class Registry implements RegistryInterface, \IteratorAggregate
             throw new \InvalidArgumentException(sprintf('A resource with name "%s" already exists', $resource->getName()));
         }
 
-        $this->resources[] = $resource;
+        $this->resources[$resource->getName()] = $resource;
     }
 
     public function has(string $name): bool
