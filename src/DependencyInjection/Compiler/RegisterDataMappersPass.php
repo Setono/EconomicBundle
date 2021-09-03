@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Setono\EconomicBundle\DependencyInjection\Compiler;
 
-use Setono\EconomicBundle\DataMapper\DataMapperInterface;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Reference;
