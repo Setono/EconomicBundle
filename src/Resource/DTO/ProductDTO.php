@@ -11,9 +11,9 @@ final class ProductDTO extends FlexibleDataTransferObject
 {
     use DataTransferObjectTrait;
 
-    public ?string $productNumber = null;
+    public string $productNumber;
 
-    public ?string $name = null;
+    public string $name;
 
     public ?string $description = null;
 
