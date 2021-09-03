@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Setono\EconomicBundle\Resource;
 
+use Spatie\DataTransferObject\DataTransferObject;
+
 final class Resource implements ResourceInterface
 {
     private string $name;
@@ -12,13 +14,20 @@ final class Resource implements ResourceInterface
 
     private string $identifier;
 
-    private ?Config $config;
+    /** @var class-string<DataTransferObject> */
+    private string $dto;
 
-    public function __construct(string $name, string $baseUri, string $identifier)
+    private ?Config $config = null;
+
+    /**
+     * @param class-string<DataTransferObject> $dto
+     */
+    public function __construct(string $name, string $baseUri, string $identifier, string $dto)
     {
         $this->name = $name;
         $this->baseUri = rtrim($baseUri, '/');
         $this->identifier = $identifier;
+        $this->dto = $dto;
     }
 
     public function getName(): string
@@ -34,6 +43,11 @@ final class Resource implements ResourceInterface
     public function getIdentifier(): string
     {
         return $this->identifier;
+    }
+
+    public function getDTO(): string
+    {
+        return $this->dto;
     }
 
     public function getConfig(): ?Config

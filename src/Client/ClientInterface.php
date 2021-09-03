@@ -8,15 +8,19 @@ use Symfony\Contracts\HttpClient\ResponseInterface;
 
 interface ClientInterface
 {
-    public function get(string $endpoint): ResponseInterface;
+    public function createUrlBuilder(): UrlBuilder;
+
+    public function get(string $url): ResponseInterface;
 
     /**
      * @param string|array|mixed $data
      */
-    public function post(string $endpoint, $data): ResponseInterface;
+    public function post(string $url, $data): ResponseInterface;
 
     /**
      * @param string|array|mixed $data
      */
-    public function put(string $endpoint, $data): ResponseInterface;
+    public function put(string $url, $data): ResponseInterface;
+
+    public function getPageCount(string $url): int;
 }

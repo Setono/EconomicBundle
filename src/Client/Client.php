@@ -7,6 +7,7 @@ namespace Setono\EconomicBundle\Client;
 use Setono\EconomicBundle\DTO\Credentials;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 use Symfony\Contracts\HttpClient\ResponseInterface;
+use Webmozart\Assert\Assert;
 
 final class Client implements ClientInterface
 {
@@ -23,27 +24,46 @@ final class Client implements ClientInterface
         $this->baseUri = rtrim($baseUri, '/');
     }
 
-    public function get(string $endpoint): ResponseInterface
+    public function createUrlBuilder(): UrlBuilder
     {
-        return $this->httpClient->request('GET', $this->generateUrl($endpoint));
+        return UrlBuilder::create($this->baseUri);
     }
 
-    public function post(string $endpoint, $data): ResponseInterface
+    public function get(string $url): ResponseInterface
+    {
+        return $this->httpClient->request('GET', $url);
+    }
+
+    public function post(string $url, $data): ResponseInterface
     {
         return $this->httpClient->request(
             'POST',
-            $this->generateUrl($endpoint),
+            $url,
             $this->resolveOptions($this->resolveDataOption($data))
         );
     }
 
-    public function put(string $endpoint, $data): ResponseInterface
+    public function put(string $url, $data): ResponseInterface
     {
         return $this->httpClient->request(
             'PUT',
-            $this->generateUrl($endpoint),
+            $url,
             $this->resolveOptions($this->resolveDataOption($data))
         );
+    }
+
+    public function getPageCount(string $url): int
+    {
+        $data = $this->get($url)->toArray();
+
+        Assert::keyExists($data, 'pagination', 'Not a collection');
+        Assert::isArray($data['pagination']);
+        Assert::keyExists($data['pagination'], 'results', 'No results key on the collection. This should not be possible');
+        Assert::integer($data['pagination']['results']);
+        Assert::keyExists($data['pagination'], 'pageSize', 'No pageSize key on the collection. This should not be possible');
+        Assert::integer($data['pagination']['pageSize']);
+
+        return (int) ceil($data['pagination']['results'] / $data['pagination']['pageSize']);
     }
 
     private function resolveOptions(array $options = []): array
@@ -55,13 +75,6 @@ final class Client implements ClientInterface
                 'X-AgreementGrantToken' => $this->apiCredentials->getAgreementGrantToken(),
             ]
         ], $options);
-    }
-
-    private function generateUrl(string $endpoint): string
-    {
-        $endpoint = ltrim($endpoint, '/');
-
-        return sprintf('%s/%s', $this->baseUri, $endpoint);
     }
 
     /**

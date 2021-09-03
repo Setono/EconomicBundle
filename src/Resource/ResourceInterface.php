@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Setono\EconomicBundle\Resource;
 
+use Spatie\DataTransferObject\DataTransferObject;
+
 interface ResourceInterface
 {
     /**
@@ -25,6 +27,13 @@ interface ResourceInterface
      * An example could be 'customerNumber' which identifies customers
      */
     public function getIdentifier(): string;
+
+    /**
+     * Returns the DTO class string
+     *
+     * @return class-string<DataTransferObject>
+     */
+    public function getDTO(): string;
 
     /**
      * If the user has defined a mapping between a resource and an entity this Config object will hold that information
