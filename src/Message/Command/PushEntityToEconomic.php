@@ -24,14 +24,13 @@ final class PushEntityToEconomic
             throw new \InvalidArgumentException(sprintf('The $identifier needs to be either int or string, "%s" provided', gettype($identifier)));
         }
 
-        $this->identifier = $identifier;
-
         if (is_object($class)) {
             $class = get_class($class);
         }
         Assert::string($class);
         Assert::classExists($class);
 
+        $this->identifier = $identifier;
         $this->class = $class;
     }
 
