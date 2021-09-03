@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace Setono\EconomicBundle\Resource\DTO;
 
+use Setono\EconomicBundle\Resource\DTO\CustomerDTO\CustomerGroupDTO;
+use Setono\EconomicBundle\Resource\DTO\CustomerDTO\PaymentTermsDTO;
+use Setono\EconomicBundle\Resource\DTO\CustomerDTO\VatZoneDTO;
 use Spatie\DataTransferObject\FlexibleDataTransferObject;
 
 final class CustomerDTO extends FlexibleDataTransferObject

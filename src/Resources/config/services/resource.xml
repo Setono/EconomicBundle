@@ -13,6 +13,16 @@
             <tag name="setono_economic.resource"/>
         </service>
 
+        <service id="setono_economic.resource.product" class="Setono\EconomicBundle\Resource\Resource">
+            <factory service="setono_economic.resource.factory" method="create"/>
+            <argument>product</argument>
+            <argument>/products</argument>
+            <argument>productNumber</argument>
+            <argument>Setono\EconomicBundle\Resource\DTO\ProductDTO</argument>
+
+            <tag name="setono_economic.resource"/>
+        </service>
+
         <service id="setono_economic.resource.registry" class="Setono\EconomicBundle\Resource\Registry\Registry"/>
 
         <service id="setono_economic.resource.factory" class="Setono\EconomicBundle\Resource\ResourceFactory">
