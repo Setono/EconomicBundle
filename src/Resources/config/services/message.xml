@@ -10,5 +10,24 @@
 
             <tag name="messenger.message_handler"/>
         </service>
+
+        <service id="setono_economic.message.handler.pull_collection_from_economic"
+                 class="Setono\EconomicBundle\Message\Handler\PullCollectionFromEconomicHandler">
+            <argument type="service" id="setono_economic.puller"/>
+            <argument type="service" id="setono_economic.resource.registry"/>
+
+            <tag name="messenger.message_handler"/>
+        </service>
+
+        <service id="setono_economic.message.handler.pull_collection_page_from_economic"
+                 class="Setono\EconomicBundle\Message\Handler\PullCollectionPageFromEconomicHandler">
+            <argument type="service" id="setono_economic.resource.registry"/>
+            <argument type="service" id="setono_economic.client"/>
+            <argument type="service" id="setono_job_status.manager.job"/>
+            <argument type="service" id="setono_economic.data_mapper.composite"/>
+            <argument type="service" id="doctrine"/>
+
+            <tag name="messenger.message_handler"/>
+        </service>
     </services>
 </container>
