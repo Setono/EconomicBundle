@@ -8,6 +8,7 @@
             <argument>customer</argument>
             <argument>/customers</argument>
             <argument>customerNumber</argument>
+            <argument>Setono\EconomicBundle\Resource\DTO\CustomerDTO</argument>
 
             <tag name="setono_economic.resource"/>
         </service>
