@@ -1,8 +1,8 @@
 {
     "name": "setono/economic-bundle",
-    "type": "symfony-bundle",
     "description": "This bundle makes it easy to work with the e-conomic API",
     "license": "MIT",
+    "type": "symfony-bundle",
     "authors": [
         {
             "name": "Joachim Løvgaard",
@@ -41,14 +41,7 @@
         "roave/security-advisories": "dev-latest",
         "setono/code-quality-pack": "^2.1"
     },
-    "config": {
-        "sort-packages": true
-    },
-    "extra": {
-        "branch-alias": {
-            "dev-master": "1.0-dev"
-        }
-    },
+    "prefer-stable": true,
     "autoload": {
         "psr-4": {
             "Setono\\EconomicBundle\\": "src/"
@@ -59,7 +52,19 @@
             "Setono\\EconomicBundle\\Tests\\": "tests/"
         }
     },
-    "prefer-stable": true,
+    "config": {
+        "allow-plugins": {
+            "ergebnis/composer-normalize": true,
+            "dealerdirect/phpcodesniffer-composer-installer": false,
+            "infection/extension-installer": true
+        },
+        "sort-packages": true
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        }
+    },
     "scripts": {
         "analyse": "psalm",
         "check-style": "ecs check",
