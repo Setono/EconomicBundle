@@ -18,7 +18,6 @@ final class RegisterResourcesPass implements CompilerPassInterface
 
         $registry = $container->getDefinition('setono_economic.resource.registry');
 
-        /** @var string $id */
         foreach (array_keys($container->findTaggedServiceIds('setono_economic.resource')) as $id) {
             $registry->addMethodCall('add', [new Reference($id)]);
         }
