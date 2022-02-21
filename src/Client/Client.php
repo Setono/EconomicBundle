@@ -73,7 +73,7 @@ final class Client implements ClientInterface
                 'Content-Type' => 'application/json',
                 'X-AppSecretToken' => $this->apiCredentials->getAppSecretToken(),
                 'X-AgreementGrantToken' => $this->apiCredentials->getAgreementGrantToken(),
-            ]
+            ],
         ], $options);
     }
 

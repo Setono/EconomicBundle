@@ -25,7 +25,7 @@ final class SetonoEconomicExtensionTest extends AbstractExtensionTestCase
             'credentials' => [
                 'app_secret_token' => '4pp_$3cr37_70k3n',
                 'agreement_grant_token' => '4gr33m3n7_gr4n7_70k3n',
-            ]
+            ],
         ];
     }
 

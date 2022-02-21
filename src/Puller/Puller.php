@@ -52,7 +52,7 @@ final class Puller implements PullerInterface
 
         $this->jobManager->start($job);
 
-        for ($page = 1; $page <= $pageCount; $page++) {
+        for ($page = 1; $page <= $pageCount; ++$page) {
             $this->commandBus->dispatch(new PullCollectionPageFromEconomic($resource, $job, $urlBuilder->skipPages($page - 1)->build()));
         }
     }
